@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "form_macro.html" import render_field %}
+{% block title %}
+BookMarker -- Signup
+{% endblock %}
+
+{% block content %}
+    <section>
+        <h1 style="clear:both">Please login</h1>
+        <form action="" method="POST">
+            {{form.hidden_tag()}}
+            <table>
+                {{render_field(form.username, size=50)}}
+                {{render_field(form.email, size=50)}}
+                {{render_field(form.password, size=50)}}
+                {{render_field(form.password2, size=50)}}
+                <tr class="submit">
+                    <td></td>
+                    <td><button type="submit">Submit</button></td>
+                </tr>
+            </table>
+        </form>
+    </section>
+{% endblock %}
+
+{% block sidebar %}
+    <!--No side bar-->
+{% endblock %}

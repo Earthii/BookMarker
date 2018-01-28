@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+BookMarker -- Welcome
+{% endblock %}
+
+{% block content %}
+    <article>
+        <header>
+            <h1>Welcome</h1>
+            <p>This is BookMarker, it is a social bookmarking site</p>
+        </header>
+        <section>
+            <h2>Recently Added</h2>
+            {% if new_bookmarks %}
+                <ul>
+                    {% for bm in new_bookmarks %}
+                        <li><a href="{{url_for('user', username=bm.user.username)}}">{{bm.user.username}}</a> added <a href="{{bm.url}}">{{bm.description}}</a> at {{bm.date}}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                No bookmarks yet.
+            {% endif %}
+        </section>
+    </article>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% from "form_macro.html" import render_field %}
+{% block title %}
+BookMarker Add a URL
+{% endblock %}
+
+{% block content %}
+    <section>
+        <h1>Add a new URL</h1>
+        <form action="" method="POST">
+            <!--protects versus Cross site request forgery CSRF-->
+            <!--wont be able to send form if it is not there-->
+            {{form.hidden_tag()}}
+            <table>
+                <!--render_field(field, keywordArgs)-->
+                {{render_field(form.url, size=50)}}
+                {{render_field(form.description, size=50)}}
+                <tr class="submit">
+                    <td></td>
+                    <td>
+                        <button type="submit">Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </section>
+{% endblock %}
+
+{% block sidebar %}
+    <!--No side bar-->
+{% endblock %}
