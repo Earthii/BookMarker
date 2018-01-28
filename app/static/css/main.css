@@ -158,6 +158,43 @@ nav a:hover {
 html, body, .app{
     height:100%;
 }
+
+a, a:visited{
+    color: #D39447
+}
+a:hover, aside a:hover, aside a:visited:hover{
+    color: #D39447
+}
+h1,h2,h3,h4,h5,h6{
+    color: #f16529
+}
+.bookmark{
+    padding-top:25px;
+    padding-bottom: 25px;
+    border-top: 1px solid #eeeeee;
+}
+ul.bookmarks{
+    list-style:none none;
+    padding-left: 0;
+}
+ul.bookmarks li{
+    padding-bottom: .5em;
+}
+a.header{
+    color: #326786;
+    text-decoration:none;
+}
+a.header h3{
+    margin: 0 0;
+}
+div.info{
+    font-size: .95em;
+    color :#666666
+}
+span.editlinks{
+    float:right;
+}
+
 .app{
     display:flex;
     flex-direction: column;

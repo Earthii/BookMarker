@@ -6,9 +6,11 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask.ext.moment import Moment  # make it avaialble in the templates
 
-basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
+moment = Moment(app)
+basedir = os.path.abspath(os.path.dirname(__file__))
 # this is needed for sessions and flashes. Key objected from urandom
 app.config['SECRET_KEY'] = "b'L\x10\xd3X4\xcaF\xa1\xcb\xb1H\xa7\xbfu\xe4\xdf*nO\xc1\x0ca\x07H'"
 # db, sqlite is bundled with python, no installation

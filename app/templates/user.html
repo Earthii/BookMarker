@@ -5,19 +5,25 @@ BookMarker -- Bookmarks for user {{user.username}}
 {% endblock %}
 
 {% block content %}
-    <article>
-        <header>
-            <h1>Bookmarks for {{user.username}}</h1>
-            <ul>
-                {% for bm in user.bookmarks %}
-                    <li>
-                        <a href="{{bm.url}}">{{bm.description}}</a>
-                        <span class="timestamp">Added at {{bm.date}}</span>
-                    </li>
-                {% else %}
-                    <li>This user has not added any bookmarks yet</li>
-                {% endfor %}
-            </ul>
-        </header>
-    </article>
+<article>
+    <header>
+        <h1>Bookmarks for {{user.username}}</h1>
+        {% if user.bookmarks.count() > 0 %}
+        {% with bookmarks = user.bookmarks %}
+        {% include "bookmark_list.html" %}
+        {% endwith %}
+        {% else %}
+        This user has not added any bookmarks yet
+        {% endif %}
+        <!--{% for bm in user.bookmarks %}-->
+        <!--<li>-->
+        <!--<a href="{{bm.url}}">{{bm.description}}</a>-->
+        <!--<span class="timestamp">Added at {{bm.date}}</span>-->
+        <!--</li>-->
+        <!--{% else %}-->
+        <!--<li>This user has not added any bookmarks yet</li>-->
+        <!--{% endfor %}-->
+
+    </header>
+</article>
 {% endblock %}
