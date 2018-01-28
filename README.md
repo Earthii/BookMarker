@@ -2,7 +2,7 @@
 
 ### What is it?
 ---
-BookMarker is a project a worked on to practice Python, Flask
+BookMarker is a pure Python project that I worked on to practice Python, Flask
 
 ### What is it built on
 ---
