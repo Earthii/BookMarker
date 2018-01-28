@@ -14,6 +14,11 @@
             Added by <a href="{{url_for('user', username=bookmark.user.username)}}">{{bookmark.user.username}}</a>
             <!--moment.js (flask moment)-->
             {{moment(bookmark.date).fromNow()}}
+            {% if current_user == bookmark.user %}
+                <span class="editlinks">
+                    <a href="{{url_for('edit_bookmark', bookmark_id = bookmark.id)}}">edit</a>
+                </span>
+            {% endif %}
         </div>
     </div>
     {% endfor %}

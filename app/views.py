@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, flash, request
+from flask import render_template, redirect, url_for, flash, request, abort
 from flask_login import login_required, login_user, logout_user, current_user
 
 from app import app, db, login_manager
@@ -58,6 +58,20 @@ def index():
     # render_template will look in templates folder by default
     return render_template("index.html", new_bookmarks=Bookmark.newest(5))
 
+
+@app.route('/edit/<int:bookmark_id>', methods=['GET', 'POST'])
+@login_required
+def edit_bookmark(bookmark_id):
+    bookmark = Bookmark.query.get_or_404(bookmark_id)
+    if current_user != bookmark.user:
+        abort(403)
+    form = BookmarkForm(obj=bookmark)  # fill form with the data from the database
+    if form.validate_on_submit():
+        form.populate_obj(bookmark)  # copy form data into bookmark
+        db.session.commit()            # bookmark object is already in the session since we made a get
+        flash('Stored "{}"'.format(bookmark.description))
+        return redirect(url_for('user', username=current_user.username))
+    return render_template('bookmark_form.html', form=form, title= "Edit bookmark")
 
 # Accept both methods
 @app.route('/add', methods=['GET', 'POST'])
